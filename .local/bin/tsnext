@@ -1,0 +1,120 @@
+#!/bin/env bash
+
+pkg_manager=""
+
+not_node(){
+  echo "ERROR: You aren't in a NodeJS project"
+  exit 1
+}
+
+no_pkg_lock(){
+  echo "ERROR: Package Lock file not found, this is needed so we can determine what package manager you use"
+  echo "You can overwrite this using: tsnext -p [pkg_manager]"
+  exit 1
+}
+
+multiple_pkg_lock(){
+  echo "ERROR: Multiple package lock files found, please only have one for each project"
+  echo "You can overwrite this using: tsnext -p [pkg_manager]"
+  exit 1
+}
+
+help(){
+  echo "Usage:"
+  echo "  tsnext [-p yarn/npm] | Selects the package manager"
+  echo "  tsnext -h --help | Shows this help screen"
+  exit 0
+}
+
+install_pgks(){
+  case "${pkg_manager}" in
+    yarn) yarn add -D typescript @types/node @types/react;;
+    npm) npm install -D typescript @types/node @types/react;;
+    *) 
+      echo "ERROR: ${pkg_manager} is a invalid or unsuported package manager"
+      exit 1
+      ;;
+  esac
+}
+
+check_pkg_manager(){
+  [[ ! -f "./package.json" ]] && not_node
+
+  if [[ ! "$pkg_manager" ]]
+  then
+    [[ -f "./package-lock.json" ]] && [[ -f "./yarn.lock" ]] && multiple_pkg_lock
+
+    if [[ -f "./package-lock.json" ]]
+    then
+      echo "INFO: package-lock.json found, using npm as package manager"
+      pkg_manager="npm"
+    elif [[ -f "./yarn.lock" ]]
+    then
+      echo "INFO: yarn.lock found, using yarn as package manager"
+      pkg_manager="yarn"
+    else
+      no_pkg_lock
+    fi
+  fi
+}
+
+modify_files(){
+  if [[ -f "./pages/_app.js" ]]
+  then 
+    echo "INFO: Adding props to _app.js"
+    sed -i "1i import { AppProps } from 'next/app'" ./pages/_app.js
+    [[ -z "$(grep 'pageProps }: AppProps' ./pages/_app.js)" ]] && sed -i 's/pageProps }/pageProps }: AppProps/' ./pages/_app.js
+  elif [[ -f "./pages/_app.tsx" ]]
+  then
+    echo "INFO: pages/_app.js already converted to pages/_app.tsx"
+  else
+    echo "INFO: No pages/_app.js | Skipping"
+  fi
+
+  echo "INFO: Renaming files from .js to .ts"
+  find ./pages/api ./styles -type f -name "*.js" -exec perl-rename -v 's/\.js/\.ts/' {} +
+  find ./pages -type f -name "*.jsx" -exec perl-rename -v 's/\.jsx/\.tsx/' {} +
+  find ./pages -type f -name "*.js" -exec perl-rename -v 's/\.js/\.tsx/' {} +
+
+  echo "Done"
+}
+
+confirm_modify_files(){
+  echo "INFO: Modifying next files"
+  read -p "Do you want to continue? [y/N] " confirmation
+  case "$confirmation" in
+    (y|Y|yes|Yes|YES) modify_files;;
+    (*) exit 0;;
+  esac
+}
+
+start_project(){
+  read -p "Do you want to start the development server? [Y/n] " serverConfirmation
+  case "$serverConfirmation" in
+    (n|n|no|No|NO) exit 0;;
+    (*) case "$pkg_manager" in
+      (yarn) yarn dev;;
+      (npm) npm run dev;;
+      (*) 
+        echo "ERROR: Package Manager not found"
+        exit 1
+      ;;
+    esac;;
+  esac
+
+}
+
+[[ "$1" == "--help" ]] && help
+
+while getopts 'h p:' flag
+do
+  case ${flag} in
+    (h) help;;
+    (p) pkg_manager=$OPTARG;;
+  esac
+done
+
+check_pkg_manager
+install_pgks
+confirm_modify_files
+start_project
