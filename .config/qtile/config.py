@@ -39,7 +39,7 @@ from libqtile.lazy import lazy
 # default variables
 mod = "mod4"
 home_dir = os.path.expanduser("~")
-terminal = "kitty"
+terminal = "alacritty"
 browser = "firefox"
 vscode = "code"
 fileManager = "Thunar"
@@ -234,7 +234,7 @@ def init_widgets_list():
                         terminal
                     ),
                     'Button3': lambda : qtile.cmd_spawn(
-                        f'neovide {home_dir}/.config/qtile/config.py'
+                        f'{terminal} -e nvim {home_dir}/.config/qtile/config.py'
                     )
                 }
             ),
@@ -335,7 +335,7 @@ def init_widgets_list():
                 foreground = nord[4],
                 background = nord[16],
                 update_interval = 5,
-                func = lambda: subprocess.check_output(f"{home_dir}/.config/qtile/scripts/num-installed-pkgs").decode("utf-8")
+                func = lambda: subprocess.check_output(f"{home_dir}/.config/wm-scripts/num-installed-pkgs").decode("utf-8")
             ),
 
             # Left Side of the bar
@@ -408,7 +408,7 @@ mouse = [
 main = None
 @hook.subscribe.startup_once
 def start_once():
-    start_script = os.path.expanduser("~/.config/qtile/scripts/autostart.sh")
+    start_script = os.path.expanduser("~/.config/wm-scripts/autostart.sh")
     subprocess.call([start_script])
 
 @hook.subscribe.startup
