@@ -1,10 +1,25 @@
 ## wm independent hotkeys
 
-super + Return
-  alacritty
+XF86AudioRaiseVolume
+	changevolume up
+
+XF86AudioLowerVolume
+	changevolume down
+
+XF86AudioMute
+	changevolume mute
 
 super + p
-  rofi --show drun
+  rofi -show run
+
+super + space
+  rofi -show drun
+
+alt + Tab
+  rofi -show window
+
+super + Return
+  alacritty
 
 super + b
   firefox
@@ -14,6 +29,9 @@ super + v
 
 super + e
   Thunar
+
+super + l
+  powermenu
 
 super + Escape
   pkill -USR1 -x sxhkd
@@ -27,10 +45,6 @@ super + {_,shift} + q
 # close and kill
 super + {shift,ctrl} + c
   bspc node -{c,k}
-
-# change layout
-super + tab
-  bspc desktop -l next
 
 # swap current node to biggest node
 super + shift + s
