@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 HISTFILE="$ZDOTDIR/.histfile"
 HISTSIZE=1500
 SAVEHIST=1000
@@ -106,7 +99,7 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 alias srczsh="source $ZDOTDIR/.zshrc"
 
 # Use dotfiles git repo
-alias dotfiles="/usr/bin/git --git-dir="$HOME/github/dotfiles" --work-tree=$HOME"
+alias dotfiles="/usr/bin/git --git-dir="$HOME/git/dotfiles" --work-tree=$HOME"
 
 # Neofetch
 alias neofetch="neofetch --config $HOME/.config/neofetch/custom1.conf"
@@ -126,7 +119,4 @@ export VISUAL="code"
 fpath=(/usr/share/zsh/site-functions/ $fpath)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
