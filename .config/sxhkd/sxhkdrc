@@ -30,7 +30,7 @@ super + v
 super + e
   Thunar
 
-super + l
+super + shift + l
   powermenu
 
 super + Escape
