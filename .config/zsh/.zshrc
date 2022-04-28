@@ -101,9 +101,6 @@ alias srczsh="source $ZDOTDIR/.zshrc"
 # Use dotfiles git repo
 alias dotfiles="/usr/bin/git --git-dir="$HOME/git/dotfiles" --work-tree=$HOME"
 
-# Neofetch
-alias neofetch="neofetch --config $HOME/.config/neofetch/custom1.conf"
-
 # Escape Keys:
 bindkey "^[[3~" delete-char
 bindkey "^[[H" beginning-of-line
@@ -120,3 +117,4 @@ fpath=(/usr/share/zsh/site-functions/ $fpath)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+eval "$(starship init zsh)"
