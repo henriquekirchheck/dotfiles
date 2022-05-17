@@ -18,6 +18,9 @@ super + space
 alt + Tab
   rofi -show window
 
+super + shift + e
+  rofi -show emoji
+
 super + Return
   alacritty
 
@@ -28,7 +31,7 @@ super + v
   code
 
 super + e
-  Thunar
+  alacritty -e "ranger"
 
 super + shift + l
   powermenu
