@@ -1,0 +1,77 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+ $directory( $c)( $deno)( $git_branch $git_status)( $nodejs)( $python)( $package)( $sudo)$character
+"""
+
+right_format = """
+$cmd_duration( $hostname@$localip)
+"""
+
+add_newline = false
+
+[c]
+symbol = " "
+format = "[$symbol($version( $name))]($style)"
+
+[character]
+format = "$symbol "
+success_symbol = "[❯](bold #0ce830)"
+error_symbol = "[❯](bold red)"
+vicmd_symbol = "[❮](bold #0ce830)"
+
+[cmd_duration]
+min_time = 5000
+format = "[ﮫ $duration]($style)"
+
+[deno]
+format = "[$symbol( $version)]($style)"
+symbol = " Deno "
+
+[directory]
+style = "bold #00ccff"
+read_only = " "
+read_only_style = "bold red"
+truncation_symbol = "../"
+home_symbol = "~"
+truncation_length = 3
+
+[docker_context]
+format = "[$symbol $context](style)"
+symbol = " "
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch(:$remote_branch)]($style)"
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+
+[hostname]
+ssh_only = true
+format = "[$hostname]($style)"
+
+[localip]
+ssh_only = true
+format = "[$localipv4]($style)"
+
+[line_break]
+disabled = true
+
+[nodejs]
+symbol = " "
+format = "[$symbol($version)]($style)"
+
+[package]
+symbol = " "
+format = "[$symbol$version]($style)"
+version_format = "v${raw}"
+
+[python]
+symbol = " "
+format = "[${symbol}${pyenv_prefix}(${version} )($virtualenv )]($style)"
+version_format = "v${raw}"
+
+[sudo]
+symbol = " "
+format = "[$symbol](style)"

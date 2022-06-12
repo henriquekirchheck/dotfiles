@@ -33,7 +33,7 @@ super + v
 super + e
   alacritty -e "ranger"
 
-super + shift + l
+super + shift + p
   powermenu
 
 super + Escape
