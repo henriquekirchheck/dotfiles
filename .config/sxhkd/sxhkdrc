@@ -1,14 +1,5 @@
 ## wm independent hotkeys
 
-XF86AudioRaiseVolume
-	changevolume up
-
-XF86AudioLowerVolume
-	changevolume down
-
-XF86AudioMute
-	changevolume mute
-
 super + p
   rofi -show run
 
@@ -17,9 +8,6 @@ super + space
 
 alt + Tab
   rofi -show window
-
-super + shift + e
-  rofi -show emoji
 
 super + Return
   alacritty
