@@ -56,7 +56,7 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 alias srczsh="source $ZDOTDIR/.zshrc"
 
 # Use dotfiles git repo
-alias dotfiles="/usr/bin/git --git-dir="$HOME/git/dotfiles" --work-tree=$HOME"
+alias dotfiles="/usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree=$HOME"
 
 # Escape Keys:
 bindkey "^[[3~" delete-char
@@ -72,8 +72,6 @@ export EDITOR="nvim"
 fpath=(/usr/share/zsh/site-functions/ $fpath)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-source "$HOME/.local/bin/nvm_init"
 
 fpath=($ZDOTDIR/.zfunc $fpath)
 
