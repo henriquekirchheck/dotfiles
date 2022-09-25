@@ -21,6 +21,9 @@ super + v
 super + e
   alacritty -e "ranger"
 
+super + ctrl + e
+  emacsclient -c -a "emacs"
+
 super + shift + p
   powermenu
 

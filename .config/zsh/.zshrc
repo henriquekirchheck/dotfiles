@@ -36,8 +36,6 @@ alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pac
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
 
 # confirm before overwriting something
 alias cp="cp -i"
@@ -72,6 +70,8 @@ export EDITOR="nvim"
 fpath=(/usr/share/zsh/site-functions/ $fpath)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+eval "$(fnm env --use-on-cd)"
 
 fpath=($ZDOTDIR/.zfunc $fpath)
 
