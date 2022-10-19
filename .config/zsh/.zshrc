@@ -64,7 +64,7 @@ bindkey "^[[F" end-of-line
 # Variables:
 export PATH="$HOME/.cargo/bin:$HOME/.yarn/bin:$HOME/.local/bin:$PATH"
 
-export EDITOR="nvim"
+export EDITOR="helix"
 
 # Plugins
 fpath=(/usr/share/zsh/site-functions/ $fpath)

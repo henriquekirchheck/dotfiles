@@ -14,8 +14,8 @@ window:
   #  y: 0
 
   padding:
-    x: 4
-    y: 4
+    x: 0
+    y: 0
 
   dynamic_padding: false
 
@@ -33,7 +33,7 @@ window:
     instance: Alacritty
     general: Alacritty
 
-  gtk_theme_variant: dark
+  decorations_theme_variant: dark
 
 scrolling:
   history: 10000
