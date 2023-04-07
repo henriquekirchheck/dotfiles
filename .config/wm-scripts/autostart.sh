@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-picom --experimental-backends &
+picom &
 dbus-launch --exit-with-session &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 pcmanfm -d &

@@ -4,6 +4,13 @@ SAVEHIST=1000
 setopt autocd
 bindkey -e
 
+## Completion
+
+autoload -U +X compinit && compinit
+autoload -U bashcompinit
+bashcompinit
+eval "$(register-python-argcomplete pipx)"
+
 zstyle ':completion:*' menu select
 
 ## History Settings
@@ -41,6 +48,9 @@ alias grep='grep --color=auto'
 alias cp="cp -i"
 alias mv='mv -i'
 
+# shortening program names
+alias hx="helix"
+
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
 
@@ -56,6 +66,8 @@ alias srczsh="source $ZDOTDIR/.zshrc"
 # Use dotfiles git repo
 alias dotfiles="/usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree=$HOME"
 
+alias dbgh="python -m debugpy --listen localhost:5678 --wait-for-client ./harmony/harmony/main.py"
+
 # Escape Keys:
 bindkey "^[[3~" delete-char
 bindkey "^[[H" beginning-of-line
@@ -64,13 +76,14 @@ bindkey "^[[F" end-of-line
 # Variables:
 export PATH="$HOME/.cargo/bin:$HOME/.yarn/bin:$HOME/.local/bin:$PATH"
 
-export EDITOR="helix"
+export EDITOR="nvim"
 
 # Plugins
 fpath=(/usr/share/zsh/site-functions/ $fpath)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+eval "$(zoxide init zsh)"
 eval "$(fnm env --use-on-cd)"
 
 fpath=($ZDOTDIR/.zfunc $fpath)
