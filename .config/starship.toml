@@ -18,11 +18,11 @@ vicmd_symbol = "[❮](bold #0ce830)"
 
 [cmd_duration]
 min_time = 5000
-format = "[ﮫ $duration]($style)"
+format = "[󰔟 $duration]($style)"
 
 [directory]
 style = "bold #00ccff"
-read_only = " "
+read_only = " 󰌾"
 read_only_style = "bold red"
 truncation_symbol = ".../"
 home_symbol = "~"
