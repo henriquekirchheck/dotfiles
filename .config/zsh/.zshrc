@@ -82,6 +82,7 @@ export EDITOR="nvim"
 fpath=(/usr/share/zsh/site-functions/ $fpath)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/pnpm-shell-completion/pnpm-shell-completion.zsh
 
 eval "$(zoxide init zsh)"
 eval "$(fnm env --use-on-cd)"
