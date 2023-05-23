@@ -27,6 +27,11 @@ zstyle :compinstall filename "$ZDOTDIR/.zshrc"
 autoload -Uz compinit
 compinit
 
+## Kitty Settings
+if [ "$TERM" = "xterm-kitty" ]; then
+	source "$ZDOTDIR/kittyrc"
+fi
+
 ## ALIASES
 
 # Changing "ls" to "exa"
@@ -48,9 +53,6 @@ alias grep='grep --color=auto'
 alias cp="cp -i"
 alias mv='mv -i'
 
-# shortening program names
-alias hx="helix"
-
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
 
@@ -66,27 +68,25 @@ alias srczsh="source $ZDOTDIR/.zshrc"
 # Use dotfiles git repo
 alias dotfiles="/usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree=$HOME"
 
-alias dbgh="python -m debugpy --listen localhost:5678 --wait-for-client ./harmony/harmony/main.py"
-
-# Escape Keys:
-bindkey "^[[3~" delete-char
-bindkey "^[[H" beginning-of-line
-bindkey "^[[F" end-of-line
-
-# Variables:
-export PATH="$HOME/.cargo/bin:$HOME/.yarn/bin:$HOME/.local/bin:$PATH"
-
-export EDITOR="nvim"
-
 # Plugins
-fpath=(/usr/share/zsh/site-functions/ $fpath)
+fpath=($ZDOTDIR/.zfunc /usr/share/zsh/site-functions/ $fpath)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /usr/share/zsh/plugins/pnpm-shell-completion/pnpm-shell-completion.zsh
 
 eval "$(zoxide init zsh)"
 eval "$(fnm env --use-on-cd)"
-
-fpath=($ZDOTDIR/.zfunc $fpath)
-
 eval "$(starship init zsh)"
+
+# Keys:
+bindkey "$terminfo[kdch1]" delete-char
+bindkey "$terminfo[khome]" beginning-of-line
+bindkey "$terminfo[kend]" end-of-line
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
+

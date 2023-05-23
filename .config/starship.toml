@@ -12,18 +12,18 @@ add_newline = false
 
 [character]
 format = "$symbol "
-success_symbol = "[❯](bold #0ce830)"
-error_symbol = "[❯](bold red)"
-vicmd_symbol = "[❮](bold #0ce830)"
+success_symbol = "[❯](#0ce830)"
+error_symbol = "[❯](bright-red)"
+vicmd_symbol = "[❮](#0ce830)"
 
 [cmd_duration]
 min_time = 5000
 format = "[󰔟 $duration]($style)"
 
 [directory]
-style = "bold #00ccff"
+style = "#00ccff"
 read_only = " 󰌾"
-read_only_style = "bold red"
+read_only_style = "bright-red"
 truncation_symbol = ".../"
 home_symbol = "~"
 truncation_length = 3
