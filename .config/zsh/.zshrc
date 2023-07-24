@@ -68,6 +68,9 @@ alias srczsh="source $ZDOTDIR/.zshrc"
 # Use dotfiles git repo
 alias dotfiles="/usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree=$HOME"
 
+# Pastebin command
+alias 0x0st="curl -F 'file=@-' 0x0.st"
+
 # Plugins
 fpath=($ZDOTDIR/.zfunc /usr/share/zsh/site-functions/ $fpath)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
