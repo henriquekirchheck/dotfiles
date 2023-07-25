@@ -1,0 +1,26 @@
+#!/bin/bash
+
+swww init
+
+# Edit below to control the images transition
+export SWWW_TRANSITION_FPS=60
+export SWWW_TRANSITION_STEP=8
+#export SWWW_TRANSITION_TYPE=random
+
+# This controls (in seconds) when to switch to the next image
+INTERVAL=300
+
+# THIS CONTROLS THE DIR THAT IS SEARCHED
+IMG_DIR="$HOME/pictures/wallpapers"
+
+while true; do
+	find "$IMG_DIR" \
+		| while read -r img; do
+			echo "$((RANDOM % 1000)):$img"
+		done \
+		| sort -n | cut -d':' -f2- \
+		| while read -r img; do
+			swww img "$img" --transition-type wave --transition-angle 300
+			sleep $INTERVAL
+		done
+done
