@@ -1,7 +1,5 @@
 #!/bin/bash
 
-swww init
-
 # Edit below to control the images transition
 export SWWW_TRANSITION_FPS=60
 export SWWW_TRANSITION_STEP=8
@@ -14,6 +12,7 @@ INTERVAL=300
 IMG_DIR="$HOME/pictures/wallpapers"
 
 while true; do
+	[ "$(hyprctl instances -j | jq "length")" -eq "0" ] && exit 0
 	find "$IMG_DIR" \
 		| while read -r img; do
 			echo "$((RANDOM % 1000)):$img"
