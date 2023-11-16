@@ -32,13 +32,20 @@ if [ "$TERM" = "xterm-kitty" ]; then
 	source "$ZDOTDIR/kittyrc"
 fi
 
+## functions
+zcalc() {
+  local args="$@"
+  insect "$args"
+}
+aliases[=]='noglob zcalc'
+
 ## ALIASES
 
 # Changing "ls" to "exa"
-alias ls='eza -al --color=always --group-directories-first --icons' # my preferred listing
-alias la='eza -a --color=always --group-directories-first --icons'  # all files and dirs
-alias ll='eza -l --color=always --group-directories-first --icons'  # long format
-alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
+alias ls='eza -al --color=always --group-directories-first --icons=always' # my preferred listing
+alias la='eza -a --color=always --group-directories-first --icons=always'  # all files and dirs
+alias ll='eza -l --color=always --group-directories-first --icons=always'  # long format
+alias lt='eza -aT --color=always --group-directories-first --icons=always' # tree listing
 
 # get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
@@ -73,13 +80,12 @@ alias 0x0st="curl -F 'file=@-' 0x0.st"
 
 # Plugins
 fpath=($ZDOTDIR/.zfunc /usr/share/zsh/site-functions/ $fpath)
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /usr/share/zsh/plugins/pnpm-shell-completion/pnpm-shell-completion.zsh
 
 eval "$(zoxide init zsh)"
-eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
 
 # Keys:
@@ -93,3 +99,6 @@ bindkey "^[[F" end-of-line
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
+
+# bun completions
+#[ -s "/home/henrique/.bun/_bun" ] && source "/home/henrique/.bun/_bun"

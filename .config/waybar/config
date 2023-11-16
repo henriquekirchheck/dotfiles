@@ -2,14 +2,13 @@
   "layer": "top",
   "modules-left": [
     "custom/launcher",
+    "tray",
+    "hyprland/workspaces"
+  ],
+  "modules-center": ["hyprland/window"],
+  "modules-right": [
     "cpu",
     "memory",
-    "tray"
-  ],
-  "modules-center": [
-    "wlr/workspaces"
-  ],
-  "modules-right": [
     "pulseaudio",
     "clock"
   ],
@@ -27,7 +26,7 @@
       ]
     }
   },
-  "wlr/workspaces": {
+  "hyprland/workspaces": {
     "format": "{icon}",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
